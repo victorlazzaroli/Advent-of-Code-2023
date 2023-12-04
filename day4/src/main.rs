@@ -24,8 +24,6 @@ fn part2(inputs: &str) -> u32 {
     let lists:Vec<(String, String)> = inputs.lines().map(|l| remove_gamestring(l)).map(|l| divide_lists(&l)).collect();
     let mut scratch_cards_pile = vec![1; lists.len()];
 
-    println!("{scratch_cards_pile:?}");
-
     let winning_nums = lists.iter().map(|l| divide_numbers(&l.0.trim())).collect::<Vec<Vec<u16>>>();
     let scratch_nums = lists.iter().map(|l| divide_numbers(&l.1.trim())).collect::<Vec<Vec<u16>>>();
     // println!("{winning_nums:?}");
