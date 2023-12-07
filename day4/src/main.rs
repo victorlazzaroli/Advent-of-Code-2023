@@ -50,7 +50,12 @@ fn divide_lists(number_lists: &str) -> (String, String) {
 }
 
 fn divide_numbers(number_list: &str) -> Vec<u16> {
-    number_list.split(' ').collect::<Vec<&str>>().iter().filter(|s| !s.trim().is_empty()).map(|num_str| num_str.trim().parse().unwrap()).collect::<Vec<u16>>()
+    // number_list.split(' ').collect::<Vec<&str>>().iter().inspect(|s| println!("Splitted : {:?}", s), ).filter(|s| !s.trim().is_empty()).map(|num_str| num_str.trim().parse().unwrap()).collect::<Vec<u16>>()
+    number_list
+        .split_whitespace()
+        .filter_map(|num_str| num_str.parse::<u16>().ok())
+        .inspect(|s| println!("Splitted : {:?}", s), )
+        .collect()
 }
 
 fn get_win_nums(winning_nums: &Vec<u16>, scratch_nums: &Vec<u16>) -> Vec<u16> {
